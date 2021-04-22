@@ -31,9 +31,17 @@ public class Solution28 {
     private int[] generateNext(String needle){
         int n = needle.length();
         int[] next = new int[n];
-
-
-
+        int j = -1;
+        next[0] = j;
+        for (int i = 1; i < n; ++i){
+            while(j >= 0 && needle.charAt(j + 1) != needle.charAt(i)){
+                j = next[j];
+            }
+            if (needle.charAt(i) == needle.charAt(j + 1)){
+                ++j;
+            }
+            next[i] = j;
+        }
         return next;
     }
 }

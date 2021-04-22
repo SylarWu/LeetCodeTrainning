@@ -1,7 +1,5 @@
 package tech.sylardaemon;
 
-import java.util.LinkedList;
-
 public class Solution115 {
 
     public int numDistinct(String s, String t) {

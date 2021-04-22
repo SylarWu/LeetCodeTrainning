@@ -1,8 +1,5 @@
 package tech.sylardaemon;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-
 public class Solution1728 {
     public boolean canMouseWin(String[] grid, int catJump, int mouseJump) {
         int row_len = grid.length;

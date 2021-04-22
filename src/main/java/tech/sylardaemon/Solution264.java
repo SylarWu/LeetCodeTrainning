@@ -1,9 +1,5 @@
 package tech.sylardaemon;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Solution264 {
 
     private static final int[] lookup = new int[1691];

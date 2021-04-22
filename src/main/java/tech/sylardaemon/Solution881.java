@@ -1,7 +1,5 @@
 package tech.sylardaemon;
 
-import java.lang.reflect.Array;
-
 public class Solution881 {
     public int numRescueBoats(int[] people, int limit) {
         quickSort(people,0,people.length - 1);

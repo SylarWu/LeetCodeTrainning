@@ -43,9 +43,4 @@ public class Solution304 {
             return this.sumData[row2][col2] + this.sumData[row1 - 1][col1 - 1] - this.sumData[row1 - 1][col2] - this.sumData[row2][col1 - 1];
         }
     }
-
-
-
-
-
 }

@@ -1,9 +1,5 @@
 package tech.sylardaemon;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 public class TrapWater {
     public int trap(int[] height) {
         return doublePointer(height);

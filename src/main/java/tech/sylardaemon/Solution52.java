@@ -1,8 +1,5 @@
 package tech.sylardaemon;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Solution52 {
     public int totalNQueens(int n) {
         int[][] mark = new int[n][2];

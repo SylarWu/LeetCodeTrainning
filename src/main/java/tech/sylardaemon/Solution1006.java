@@ -1,8 +1,5 @@
 package tech.sylardaemon;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Solution1006 {
     public int clumsy(int N) {
         int total = 0;

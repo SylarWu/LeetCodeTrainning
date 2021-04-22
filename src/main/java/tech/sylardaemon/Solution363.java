@@ -6,14 +6,13 @@ public class Solution363 {
         int n = matrix[0].length;
         int[][] sumData = transform(matrix);
 
-
         int res = Integer.MIN_VALUE;
         int temp;
-        for (int i = 1; i < m; ++i){
-            for (int j = 1; j < n; ++j){
+        for (int i = 0; i < m; ++i){
+            for (int j = 0; j < n; ++j){
 
-                for (int ii = 0;ii < i; ++ii){
-                    for (int jj = 0; jj < j; ++jj){
+                for (int ii = 0;ii <= i; ++ii){
+                    for (int jj = 0; jj <= j; ++jj){
                         temp = getResult(sumData,ii,jj,i,j);
                         if (temp <= k){
                             res = temp > res ? temp : res;

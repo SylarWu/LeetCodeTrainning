@@ -2,6 +2,11 @@ package tech.sylardaemon;
 
 public class Solution363 {
     public int maxSumSubmatrix(int[][] matrix, int k) {
+        return bruteForce(matrix,k);
+    }
+
+
+    private int bruteForce(int[][] matrix,int k){
         int m = matrix.length;
         int n = matrix[0].length;
         int[][] sumData = transform(matrix);
@@ -10,7 +15,6 @@ public class Solution363 {
         int temp;
         for (int i = 0; i < m; ++i){
             for (int j = 0; j < n; ++j){
-
                 for (int ii = 0;ii <= i; ++ii){
                     for (int jj = 0; jj <= j; ++jj){
                         temp = getResult(sumData,ii,jj,i,j);

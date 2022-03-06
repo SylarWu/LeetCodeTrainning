@@ -5,7 +5,33 @@ import java.util.List;
 
 public class Solution2100 {
     public List<Integer> goodDaysToRobBank(int[] security, int time) {
-        return dpMethodII(security, time);
+        return decreaseStackMethod(security, time);
+    }
+
+    private List<Integer> decreaseStackMethod(int[] security, int time){
+        List<Integer> result = new LinkedList<>();
+        LinkedList<Integer> decreaseStack = new LinkedList<>();
+        boolean[] mark = new boolean[security.length];
+        for (int i = 0; i < security.length; ++i){
+            if (!decreaseStack.isEmpty() && decreaseStack.peek() < security[i]){
+                decreaseStack.clear();
+            }
+            if (decreaseStack.size() >= time){
+                mark[i] = true;
+            }
+            decreaseStack.push(security[i]);
+        }
+        decreaseStack.clear();
+        for (int i = security.length - 1; i >= 0; --i){
+            if (!decreaseStack.isEmpty() && decreaseStack.peek() < security[i]){
+                decreaseStack.clear();
+            }
+            if (mark[i] && decreaseStack.size() >= time){
+                result.add(i);
+            }
+            decreaseStack.push(security[i]);
+        }
+        return result;
     }
 
     private List<Integer> dpMethodII(int[] security, int time){

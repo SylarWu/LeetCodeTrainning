@@ -1,23 +1,37 @@
 package tech.sylardaemon.offer;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Solution03 {
+
     public int findRepeatNumber(int[] nums) {
-        LinkedList<Integer>[] hash = new LinkedList[1000];
-        for (int i = 0 ; i < 1000 ;++i){
-            hash[i] = new LinkedList<Integer>();
-        }
         int index = 0;
-        for (int i = 0; i < nums.length; ++i){
-            index = nums[i] % 1000;
-            for (Integer x : hash[index]){
-                if (x == nums[i]){
-                    return x;
-                }
+        while (index < nums.length){
+            if (index == nums[index]){
+                ++index;
+                continue;
             }
-            hash[index].add(nums[i]);
+            if (nums[index] == nums[nums[index]]){
+                return nums[index];
+            }
+            int temp = nums[index];
+            nums[index] = nums[temp];
+            nums[temp] = temp;
         }
-        return 0;
+        return -1;
+    }
+
+
+    private int firstIdea(int[] nums){
+        final Object PLACEHOLDER = new Object();
+        HashMap<Integer, Object> memory = new HashMap<>();
+        for (int i = 0; i < nums.length; ++i){
+            if (memory.containsKey(nums[i])){
+                return nums[i];
+            }
+            memory.put(nums[i], PLACEHOLDER);
+        }
+        return -1;
     }
 }

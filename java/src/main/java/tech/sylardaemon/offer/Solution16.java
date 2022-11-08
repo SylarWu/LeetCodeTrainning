@@ -2,7 +2,7 @@ package tech.sylardaemon.offer;
 
 public class Solution16 {
     public double myPow(double x, int n) {
-        if (x == 0) {
+        if (x == 0){
             return 0;
         }
         long pown = n;
@@ -12,11 +12,11 @@ public class Solution16 {
         }
         double result = 1.0;
         while (pown > 0){
-            if ((pown & 0x01) == 1){
+            if ((pown & 0x1) == 1){
                 result *= x;
             }
             x *= x;
-            pown >>= 1;
+            pown = pown >> 1;
         }
         return result;
     }

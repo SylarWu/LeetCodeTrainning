@@ -2,50 +2,61 @@ package tech.sylardaemon.offer;
 
 public class Solution51 {
     public int reversePairs(int[] nums) {
-        if (nums == null || nums.length < 2){
-            return 0;
-        }
-        int[] input = new int[nums.length];
-        for (int i = 0 ; i < nums.length ; ++i){
-            input[i] = nums[i];
-        }
-        return mergeSort(input,new int[nums.length],0,nums.length - 1);
+        return merge_method(nums);
     }
 
-    private int mergeSort(int[] nums,int[] target,int l,int r){
-        if (l == r){
-            return 0;
-        }
-        int middle = (l + r) / 2;
-        int leftCount = mergeSort(nums,target,l,middle);
-        int rightCount = mergeSort(nums,target,middle + 1,r);
-        if (nums[middle] <= nums[middle + 1]){
-            return leftCount + rightCount;
-        }
-        return leftCount + rightCount + merge(nums,target,l,middle,r);
-    }
-
-    private int merge(int[] nums,int[] target,int l,int middle,int r){
-        for (int i = l; i <= r; ++i){
-            target[i] = nums[i];
-        }
-        int i = l;
-        int j = middle + 1;
-        int pair_count = 0;
-        for (int k = l; k <= r; ++k){
-            if (i == middle + 1){
-                nums[k] = target[j++];
-            }else if (j == r + 1){
-                nums[k] = target[i++];
-            }else if (target[i] <= target[j]){
-                nums[k] = target[i++];
-            }else{
-                nums[k] = target[j];
-                pair_count += (middle + 1 - i);
-                ++j;
+    private int simple_method(int[] nums){
+        int count = 0;
+        for (int i = 0; i < nums.length; ++i){
+            for (int j = i + 1; j < nums.length; ++j){
+                count += nums[i] > nums[j] ? 1: 0;
             }
         }
-        return pair_count;
+        return count;
+    }
+
+    private int merge_method(int[] nums){
+        if (nums == null || nums.length <= 1){
+            return 0;
+        }
+        int count = mergeSort(nums, new int[nums.length], 0, nums.length - 1);
+        return count;
+    }
+
+    private int mergeSort(int[] main, int[] backup, int left, int right){
+        if (left >= right){
+            return 0;
+        }
+        int middle = left + (right - left) / 2;
+        int left_count = mergeSort(main, backup, left, middle);
+        int right_count = mergeSort(main, backup, middle + 1, right);
+        if (main[middle] <= main[middle + 1]){
+            return left_count + right_count;
+        }
+        return left_count + right_count + merge(main, backup, left, middle, right);
+    }
+
+    private int merge(int[] main, int[] backup, int left, int middle, int right){
+        int count = 0;
+        for (int i = left; i <= right; ++i){
+            backup[i] = main[i];
+        }
+        int i = left, j = middle + 1, k = left;
+        while (i <= middle && j <= right){
+            if (backup[i] <= backup[j]){
+                main[k++] = backup[i++];
+            }else{
+                main[k++] = backup[j++];
+                count += (middle - i + 1);
+            }
+        }
+        while (i <= middle){
+            main[k++] = backup[i++];
+        }
+        while (j <= right){
+            main[k++] = backup[j++];
+        }
+        return count;
     }
 
 }

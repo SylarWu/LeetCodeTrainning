@@ -10,7 +10,7 @@ public class Solution11 {
                 left = middle + 1;
             }else if (numbers[middle] < numbers[right]){
                 right = middle;
-            }else {
+            }else{
                 --right;
             }
         }
